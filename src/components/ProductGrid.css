@@ -1,0 +1,111 @@
+/* Section wrapper */
+.product-section {
+  padding: 20px 40px;
+  background-color: #D4B896;
+}
+
+/* Section title */
+.section-title {
+  font-family: 'Rye', serif;
+  font-size: 32px;
+  color: #161412;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+/* Grid layout — 4 cards in a row */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Individual card */
+.product-card {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+/* Product image */
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Info below image */
+.product-info {
+  padding: 16px;
+}
+
+/* Category tag */
+.product-category {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #A31621;
+  margin-bottom: 6px;
+}
+
+/* Product name */
+.product-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #161412;
+  margin-bottom: 6px;
+}
+
+/* Price */
+.product-price {
+  font-size: 15px;
+  color: #4A4540;
+  margin-bottom: 16px;
+}
+
+/* Add to cart button */
+.product-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #161412;
+  color: #F3F1EA;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+}
+
+/* Button hover */
+.product-btn:hover {
+  background-color: #A31621;
+}
+
+/* Card hover — slight lift effect */
+.product-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+
+/* Tablet — 2 columns */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-section {
+    padding: 40px 20px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+}
+
+/* Mobile — 1 column */
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

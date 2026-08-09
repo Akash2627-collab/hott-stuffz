@@ -1,0 +1,148 @@
+/* Import the brand font */
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Work+Sans:wght@400;600&display=swap');
+
+/* The main navbar container */
+.navbar {
+  background-color: #161412;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Brand name on the left */
+.navbar-logo {
+  font-family: 'Rye', serif;
+  color: #A31621;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+/* The nav links on the right */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Each individual link */
+.navbar-links li {
+  color: #F3F1EA;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+/* Hover effect on links */
+.navbar-links li:hover {
+  color: #A31621;
+}
+/* Position the dropdown correctly */
+.dropdown {
+  position: relative;
+}
+
+/* The dropdown menu — hidden by default */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #161412;
+  list-style: none;
+  padding: 8px 0;
+  min-width: 180px;
+  border-top: 2px solid #A31621;
+}
+
+/* Each item inside dropdown */
+.dropdown-menu li {
+  padding: 10px 20px;
+  color: #F3F1EA;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* Hover effect on dropdown items */
+.dropdown-menu li:hover {
+  background-color: #A31621;
+  color: #F3F1EA;
+}
+
+/* Show dropdown when hovering the parent */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+/* Style the Link tags */
+.navbar-links a {
+  color: #F3F1EA;
+  text-decoration: none;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+/* Hover effect on links */
+.navbar-links a:hover {
+  color: #A31621;
+}
+
+/* Hide hamburger on desktop */
+.hamburger {
+  display: none;
+  color: #F3F1EA;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Mobile navbar */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #161412;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .navbar-links.open {
+    display: flex;
+  }
+
+  .navbar {
+    position: relative;
+    flex-wrap: wrap;
+  }
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-kannada {
+  font-family: 'Tiro Kannada', serif;
+  color: #A31621;
+  font-size: 22px;
+  letter-spacing: 2px;
+  padding-right: 30px;
+}
+
+.logo-english {
+  font-family: 'Rye', serif;
+  color: #A31621;
+  font-size: 22px;
+  letter-spacing: 2px;
+}

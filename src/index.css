@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Rye&family=Work+Sans:wght@400;600&family=Tiro+Kannada&display=swap');
+:root {
+  --color-bg: #F3F1EA;
+  --color-black: #161412;
+  --color-red: #A31621;
+  --color-orange: #D9531E;
+  --color-grey: #4A4540;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #acacac;
+  color: var(--color-black);
+  font-family: 'Work Sans', sans-serif;
+}
