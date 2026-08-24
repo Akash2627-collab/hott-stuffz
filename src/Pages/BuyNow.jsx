@@ -45,7 +45,7 @@ function BuyNowPage() {
     }
 
     const options = {
-      key: "rzp_test_T8E3mLkTaJ8Tdj",
+      key: "rzp_live_TTSeiGWyUaAoKP",
       amount: getPrice() * 100,
       currency: "INR",
       name: "Hott Stuffz",

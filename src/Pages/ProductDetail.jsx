@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../firebase'
 import { useParams, useNavigate } from 'react-router-dom'
+import SizeChartModal from '../components/SizeChartModal'
 
 function ProductDetail({ addToCart }) {
   const { id } = useParams()
@@ -9,9 +10,9 @@ function ProductDetail({ addToCart }) {
   const [loading, setLoading] = useState(true)
   const [selectedSize, setSelectedSize] = useState('')
   const [customSize, setCustomSize] = useState('')
+  const [showSizeChart, setShowSizeChart] = useState(false)
   const navigate = useNavigate()
 
-  // Replace with your business WhatsApp phone number (with country code, no + or spaces)
   const whatsappPhoneNumber = '919000000000' 
 
   useEffect(() => {
@@ -41,12 +42,23 @@ function ProductDetail({ addToCart }) {
   }
 
   function handleAddToCart() {
-  addToCart(product)
-}
-function handleBuyNow() {
-  addToCart(product)
-  navigate('/cart')
-}
+    const finalSize = getFinalSize()
+    if (!finalSize) {
+      alert('Please select your size first!')
+      return
+    }
+    addToCart({ ...product, size: finalSize })
+  }
+
+  function handleBuyNow() {
+    const finalSize = getFinalSize()
+    if (!finalSize) {
+      alert('Please select your size first!')
+      return
+    }
+    addToCart({ ...product, size: finalSize })
+    navigate('/cart')
+  }
 
   function handleWhatsAppOrder() {
     const finalSize = getFinalSize()
@@ -93,9 +105,25 @@ function handleBuyNow() {
 
         {/* Size Selector */}
         <div style={{ marginBottom: '32px' }}>
-          <p style={{ fontSize: '13px', letterSpacing: '2px', textTransform: 'uppercase', color: '#161412', marginBottom: '12px', fontWeight: '600' }}>
-            Select Size
-          </p>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+            <p style={{ fontSize: '13px', letterSpacing: '2px', textTransform: 'uppercase', color: '#161412', fontWeight: '600', margin: 0 }}>
+              Select Size
+            </p>
+            <button
+              onClick={() => setShowSizeChart(true)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#A31621',
+                fontSize: '12px',
+                textDecoration: 'underline',
+                cursor: 'pointer',
+                fontFamily: 'Work Sans, sans-serif'
+              }}
+            >
+              Size Chart
+            </button>
+          </div>
 
           {/* Size buttons */}
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
@@ -190,9 +218,9 @@ function handleBuyNow() {
           Buy Now
         </button>
 
-       
-
       </div>
+
+      {showSizeChart && <SizeChartModal onClose={() => setShowSizeChart(false)} />}
     </div>
   )
 }

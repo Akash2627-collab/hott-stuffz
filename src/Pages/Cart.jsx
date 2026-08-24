@@ -21,7 +21,7 @@ function Cart({ cart, removeFromCart }) {
     }
 
     const options = {
-      key: "rzp_test_T8E3mLkTaJ8Tdj",
+      key: "rzp_live_TTSeiGWyUaAoKP",
       amount: calculateTotal() * 100,
       currency: "INR",
       name: "Hott Stuffz",
