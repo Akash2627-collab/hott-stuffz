@@ -3,15 +3,15 @@ import ProductGrid from '../components/ProductGrid'
 import Reviews from '../components/Reviews'
 import DemandSection from '../components/DemandSection'
 
-function Home({ addToCart }) {
+function Home() {
   return (
     <div>
       <Hero />
-      <ProductGrid addToCart={addToCart} />
+      <DemandSection />
+      <ProductGrid />
       <div style={{ padding: '80px 40px' }}>
         <Reviews productId="homepage" />
       </div>
-      <DemandSection />
     </div>
   )
 }
