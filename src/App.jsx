@@ -10,6 +10,7 @@ import AdminLogin from './Pages/AdminLogin.jsx'
 import Shop from './Pages/Shop.jsx'
 import About from './Pages/About.jsx'
 import Cart from './Pages/Cart.jsx'
+import StyleAssistant from './components/StyleAssistant'
 
 function App() {
   const [cart, setCart] = useState([])
@@ -36,8 +37,8 @@ function App() {
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/product/:id" element={<ProductDetail addToCart={addToCart} />} />
       </Routes>
-      <Footer />
-      
+            <Footer />
+      <StyleAssistant />
     </BrowserRouter>
   )
 }

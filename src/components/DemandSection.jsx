@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { collection, addDoc } from 'firebase/firestore'
+import './DemandSection.css'
 import { db } from '../firebase'
 
 function DemandSection() {
@@ -105,7 +106,7 @@ function DemandSection() {
           </button>
         </div>
       ) : (
-        <div style={{
+        <div className="demand-grid" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
           gap: '60px',
@@ -133,7 +134,7 @@ function DemandSection() {
               ⚡ Exclusive To Hott Stuffz
             </span>
 
-            <h2 style={{
+            <h2 className="stay-text-demand" style={{
               fontFamily: 'Rye, serif',
               fontSize: '48px',
               lineHeight: '1.15',
