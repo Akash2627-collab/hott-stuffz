@@ -36,8 +36,7 @@ Respond in this exact JSON format only, no other text:
 }`
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GOOGLE_GEMINI_APIKEY}`,
-      {
+`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${process.env.GOOGLE_GEMINI_APIKEY}`,      {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
