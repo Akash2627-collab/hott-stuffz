@@ -10,20 +10,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-5',
-        max_tokens: 1000,
-        messages: [
-          {
-            role: 'user',
-            content: `You are a fashion stylist for Hott Stuffz, a men's fashion brand.
+    const prompt = `You are a fashion stylist for Hott Stuffz, a men's fashion brand.
 
 Customer details:
 - Occasion: ${occasion}
@@ -47,18 +34,43 @@ Respond in this exact JSON format only, no other text:
   ],
   "stylistNote": "one sentence overall style advice"
 }`
-          }
-        ]
-      })
-    })
+
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GOOGLE_GEMINI_APIKEY}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [
+                { text: prompt }
+              ]
+            }
+          ]
+        })
+      }
+    )
 
     const data = await response.json()
 
-    if (!data.content || !data.content[0]) {
+    if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
       return res.status(500).json({ error: 'No response from AI', details: data.error })
     }
 
-    return res.status(200).json(data)
+    const rawText = data.candidates[0].content.parts[0].text
+
+    // Gemini sometimes wraps JSON in markdown code fences — strip those if present
+    const cleanText = rawText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
+
+    // Reshape to match what StyleAssistant.jsx expects (same shape as before)
+    return res.status(200).json({
+      content: [
+        { text: cleanText }
+      ]
+    })
 
   } catch (error) {
     return res.status(500).json({ error: 'Something went wrong', details: error.message })
