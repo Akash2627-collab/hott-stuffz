@@ -84,27 +84,27 @@ function StyleAssistant() {
 
   return (
     <>
-      <button
-        onClick={() => setIsOpen(true)}
-        style={{
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
-          backgroundColor: '#A31621',
-          color: '#F3F1EA',
-          fontFamily: 'Rye, serif',
-          fontSize: '14px',
-          padding: '14px 20px',
-          border: 'none',
-          cursor: 'pointer',
-          borderRadius: '50px',
-          boxShadow: '0 4px 20px rgba(163, 22, 33, 0.4)',
-          zIndex: 1000,
-          letterSpacing: '1px'
-        }}
-      >
-        🔥 Style Assist
-      </button>
+     <button
+  className="style-assist-btn"
+  onClick={() => setIsOpen(true)}
+  style={{
+    position: 'fixed',
+    bottom: '24px',
+    right: '24px',
+    background: 'linear-gradient(135deg, #4285F4 0%, #9B72CB 50%, #D96570 100%)',
+    color: '#FFFFFF',
+    fontFamily: 'Rye, serif',
+    fontSize: '14px',
+    padding: '14px 20px',
+    border: 'none',
+    cursor: 'pointer',
+    borderRadius: '50px',
+    zIndex: 1000,
+    letterSpacing: '1px'
+  }}
+>
+  ✨ Style Assist
+</button>
 
       {isOpen && (
         <div style={{

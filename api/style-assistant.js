@@ -36,8 +36,12 @@ Respond in this exact JSON format only, no other text:
 }`
 
     const response = await fetch(
+<<<<<<< HEAD
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GOOGLE_GEMINI_APIKEY}`,
       {
+=======
+`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${process.env.GOOGLE_GEMINI_APIKEY}`,      {
+>>>>>>> 108a75cfc88b6ddeada20d21b87308d41a91e072
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -62,10 +66,15 @@ Respond in this exact JSON format only, no other text:
 
     const rawText = data.candidates[0].content.parts[0].text
 
+<<<<<<< HEAD
     // Gemini sometimes wraps JSON in markdown code fences — strip those if present
     const cleanText = rawText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
 
     // Reshape to match what StyleAssistant.jsx expects (same shape as before)
+=======
+    const cleanText = rawText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
+
+>>>>>>> 108a75cfc88b6ddeada20d21b87308d41a91e072
     return res.status(200).json({
       content: [
         { text: cleanText }
