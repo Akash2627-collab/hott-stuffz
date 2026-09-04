@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { collection, addDoc } from 'firebase/firestore'
-import './DemandSection.css'
 import { db } from '../firebase'
 
 function DemandSection() {
@@ -65,19 +64,37 @@ function DemandSection() {
     setImageUrl('')
   }
 
-  return (
+ return (
     <div style={{
       position: 'relative',
       background: 'linear-gradient(160deg, #C8A882 0%, #A31621 20%, #6E0F17 100%)',
       padding: '100px 40px 110px',
       clipPath: zigzagClip,
-      marginTop: '-1%',
-      marginBottom: '-1%',
+      marginTop: '-6%',
+      marginBottom: '-6%',
       zIndex: 2,
       width: '100vw',
       marginLeft: 'calc(-50vw + 50%)',
       marginRight: 'calc(-50vw + 50%)'
     }}>
+
+      <style>{`
+  @media (max-width: 900px) {
+    .demand-grid {
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
+    }
+  }
+  @media (max-width: 500px) {
+    .stay-text-demand {
+      font-size: 32px !important;
+    }
+    .demand-form-row {
+      grid-template-columns: 1fr !important;
+    }
+  }
+`}</style>
+      
 
       {submitted ? (
         <div style={{ textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
@@ -165,9 +182,9 @@ function DemandSection() {
             boxShadow: '0 20px 60px rgba(0,0,0,0.4)'
           }}>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-              <input
-                placeholder="Your Name"
+<div className="demand-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+  <input
+    placeholder="Your Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 style={{ padding: '12px', border: '1px solid #4A4540', fontFamily: 'Work Sans, sans-serif', backgroundColor: '#1C1917', color: '#F3F1EA', boxSizing: 'border-box', borderRadius: '4px' }}
@@ -180,9 +197,9 @@ function DemandSection() {
               />
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-              <select
-                value={occasion}
+              <div className="demand-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+    <select
+      value={occasion}
                 onChange={(e) => setOccasion(e.target.value)}
                 style={{ padding: '12px', border: '1px solid #4A4540', fontFamily: 'Work Sans, sans-serif', backgroundColor: '#1C1917', color: '#F3F1EA', borderRadius: '4px' }}
               >

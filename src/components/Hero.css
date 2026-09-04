@@ -4,10 +4,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 10px;
+  padding: 0px 0px;
   padding-bottom: 10px;
   background: linear-gradient(180deg, #ac0606fa 0%, #D4B896 100%);
-  min-height: 500px;
+  min-height: 600px;
   gap: 0px;
 }
 
