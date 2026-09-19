@@ -4,17 +4,17 @@ import { useState, useEffect } from 'react'
 const reels = [
   {
     id: 1,
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
+    video: "https://res.cloudinary.com/pctbzpbb/video/upload/v1788788995/InShot_20260820_161841493_tawbd8.mp4",
     link: "https://www.instagram.com/hott_stuffz_?igsh=MTd5dnlrcm1hMHEyNg=="
   },
   {
     id: 2,
-    video: "https://www.w3schools.com/html/movie.mp4",
+    video: "https://res.cloudinary.com/pctbzpbb/video/upload/v1788788941/InShot_20260820_171157806_asqwzf.mp4",
     link: "https://www.instagram.com/hott_stuffz_?igsh=MTd5dnlrcm1hMHEyNg=="
   },
   {
     id: 3,
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
+    video: "https://res.cloudinary.com/pctbzpbb/video/upload/v1788425060/InShot_20260821_124454414_e5dsqy.mp4",
     link: "https://www.instagram.com/hott_stuffz_?igsh=MTd5dnlrcm1hMHEyNg=="
   },
 ]

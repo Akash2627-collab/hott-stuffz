@@ -1,4 +1,5 @@
 import './Footer.css'
+import ReturnsModal from './ReturnsModal'
 
 function Footer() {
   return (
@@ -9,6 +10,7 @@ function Footer() {
         <div className="footer-brand">
           <h2 className="footer-logo">HOTT STUFFZ</h2>
           <p className="footer-tagline">Ready to wear. Right now.</p>
+          <ReturnsModal />
         </div>
 
         <div className="footer-links">
@@ -43,4 +45,4 @@ function Footer() {
   )
 }
 
-export default Footer 
+export default Footer

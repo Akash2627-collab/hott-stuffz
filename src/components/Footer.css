@@ -104,3 +104,7 @@
     padding: 40px 20px 0px 20px;
   }
 }
+
+.returns-footer-btn:hover {
+  transform: scale(1.05);
+}

@@ -8,6 +8,8 @@ function Admin() {
   const [products, setProducts] = useState([])
   const [orders, setOrders] = useState([])
   const [reviews, setReviews] = useState([])
+  const [demands, setDemands] = useState([])
+  const [returns, setReturns] = useState([])
   const [loading, setLoading] = useState(true)
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
@@ -21,6 +23,8 @@ function Admin() {
     fetchProducts()
     fetchOrders()
     fetchReviews()
+    fetchDemands()
+    fetchReturns()
   }, [])
 
   async function fetchProducts() {
@@ -51,6 +55,24 @@ function Admin() {
     setReviews(reviewList)
   }
 
+  async function fetchDemands() {
+    const querySnapshot = await getDocs(collection(db, 'demands'))
+    const demandList = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }))
+    setDemands(demandList)
+  }
+
+  async function fetchReturns() {
+    const querySnapshot = await getDocs(collection(db, 'returns'))
+    const returnList = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }))
+    setReturns(returnList)
+  }
+
   async function handleAddProduct() {
     if (!name || !price || !category || !occasion || !description || !imageUrl) {
       alert('Please fill all fields including image URL!')
@@ -77,6 +99,16 @@ function Admin() {
   async function handleDeleteReview(id) {
     await deleteDoc(doc(db, 'reviews', id))
     fetchReviews()
+  }
+
+  async function handleDeleteDemand(id) {
+    await deleteDoc(doc(db, 'demands', id))
+    fetchDemands()
+  }
+
+  async function handleDeleteReturn(id) {
+    await deleteDoc(doc(db, 'returns', id))
+    fetchReturns()
   }
 
   async function handleLogout() {
@@ -192,6 +224,70 @@ function Admin() {
   </span>
 ))}
               </div>
+            </div>
+          ))
+        )}
+      </div>
+
+      {/* Demands Section */}
+      <div style={{ backgroundColor: '#ffffff', padding: '32px', marginBottom: '40px' }}>
+        <h2 style={{ fontFamily: 'Rye, serif', marginBottom: '24px', fontSize: '20px' }}>
+          Custom Outfit Requests ({demands.length})
+        </h2>
+        {demands.length === 0 ? (
+          <p style={{ color: '#4A4540' }}>No requests yet.</p>
+        ) : (
+          demands.map((demand) => (
+            <div key={demand.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '20px 0', borderBottom: '1px solid #F3F1EA' }}>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                {demand.imageUrl && (
+                  <img src={demand.imageUrl} alt="Reference"
+                    style={{ width: '70px', height: '90px', objectFit: 'cover', borderRadius: '4px' }} />
+                )}
+                <div>
+                  <h3 style={{ color: '#161412', marginBottom: '4px' }}>{demand.name}</h3>
+                  <p style={{ color: '#4A4540', fontSize: '13px', marginBottom: '4px' }}>📞 {demand.phone}</p>
+                  <p style={{ color: '#4A4540', fontSize: '13px', marginBottom: '4px' }}>🎯 {demand.occasion} — Size: {demand.size}</p>
+                  <p style={{ color: '#4A4540', fontSize: '13px', marginBottom: '4px' }}>{demand.notes}</p>
+                  <p style={{ color: '#4A4540', fontSize: '12px' }}>{demand.createdAt} — Status: {demand.status}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => handleDeleteDemand(demand.id)}
+                style={{ padding: '8px 20px', backgroundColor: '#A31621', color: '#F3F1EA', border: 'none', cursor: 'pointer', fontFamily: 'Work Sans, sans-serif', whiteSpace: 'nowrap' }}>
+                Delete
+              </button>
+            </div>
+          ))
+        )}
+      </div>
+
+      {/* Returns & Exchanges Section */}
+      <div style={{ backgroundColor: '#ffffff', padding: '32px', marginBottom: '40px' }}>
+        <h2 style={{ fontFamily: 'Rye, serif', marginBottom: '24px', fontSize: '20px' }}>
+          Return & Exchange Requests ({returns.length})
+        </h2>
+        {returns.length === 0 ? (
+          <p style={{ color: '#4A4540' }}>No requests yet.</p>
+        ) : (
+          returns.map((ret) => (
+            <div key={ret.id} style={{ padding: '20px', borderBottom: '1px solid #F3F1EA', marginBottom: '16px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                <h3 style={{ color: '#161412' }}>{ret.name} — {ret.requestType}</h3>
+                <button
+                  onClick={() => handleDeleteReturn(ret.id)}
+                  style={{ padding: '8px 20px', backgroundColor: '#A31621', color: '#F3F1EA', border: 'none', cursor: 'pointer', fontFamily: 'Work Sans, sans-serif' }}>
+                  Delete
+                </button>
+              </div>
+              <p style={{ color: '#4A4540', fontSize: '13px', marginBottom: '4px' }}>📞 {ret.phone}</p>
+              <p style={{ color: '#4A4540', fontSize: '13px', marginBottom: '4px' }}>🧾 Order ID: {ret.orderId}</p>
+              <p style={{ color: '#4A4540', fontSize: '13px', marginBottom: '4px' }}>👕 {ret.itemName} {ret.desiredSize && `— Wants size: ${ret.desiredSize}`}</p>
+              <p style={{ color: '#4A4540', fontSize: '13px', marginBottom: '4px' }}>{ret.reason}</p>
+              {ret.imageUrl && (
+  <img src={ret.imageUrl} alt="Return reference" style={{ width: '70px', height: '90px', objectFit: 'cover', borderRadius: '4px', marginTop: '8px' }} />
+)}
+              <p style={{ color: '#4A4540', fontSize: '12px' }}>{ret.createdAt} — Status: {ret.status}</p>
             </div>
           ))
         )}

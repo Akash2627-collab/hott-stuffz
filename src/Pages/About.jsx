@@ -82,7 +82,11 @@ function About() {
               fontSize: '52px',
               overflow: 'hidden'
             }}>
-              👤
+              <img
+    src="https://res.cloudinary.com/pctbzpbb/image/upload/v1789804729/akash_pic_1_yqgfxe.jpg"
+    alt="Akash Gadigi"
+    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+  />
             </div>
             <h3 style={{
               fontFamily: 'Rye, serif',
@@ -178,7 +182,11 @@ function About() {
               fontSize: '52px',
               overflow: 'hidden'
             }}>
-              👤
+              <img
+    src="https://res.cloudinary.com/pctbzpbb/image/upload/v1789034909/IMG-20260825-WA0002_yuk5fo.jpg"
+    alt="Akash Gadigi"
+    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+  />
             </div>
             <h3 style={{
               fontFamily: 'Rye, serif',
@@ -208,7 +216,7 @@ function About() {
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
               {/* LinkedIn Logo Button */}
               <a
-                href="#"
+                href="https://www.linkedin.com/in/sanjay-yogi-8b949b386/"
                 target="_blank"
                 rel="noreferrer"
                 style={{
@@ -229,7 +237,7 @@ function About() {
               </a>
               {/* Instagram Logo Button */}
               <a
-                href="#"
+                href="https://www.instagram.com/__sanjaii____?igsi=dzEwNGFucGNtbWM3"
                 target="_blank"
                 rel="noreferrer"
                 style={{

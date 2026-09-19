@@ -10,6 +10,7 @@ import AdminLogin from './Pages/AdminLogin.jsx'
 import Shop from './Pages/Shop.jsx'
 import About from './Pages/About.jsx'
 import Cart from './Pages/Cart.jsx'
+import Returns from './Pages/Returns.jsx'
 import StyleAssistant from './components/StyleAssistant'
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/buy-now" element={<BuyNow />} />
         <Route path="/admin-login" element={<AdminLogin />} />
+        <Route path="/returns" element={<Returns />} />
         <Route path="/product/:id" element={<ProductDetail addToCart={addToCart} />} />
       </Routes>
             <Footer />
