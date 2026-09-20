@@ -9,8 +9,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing required fields' })
   }
 
-  try {
-    const prompt = `You are a fashion stylist for Hott Stuffz, a men's fashion brand.
+  const prompt = `You are a fashion stylist for Hott Stuffz, a men's fashion brand.
 
 Customer details:
 - Occasion: ${occasion}
@@ -35,6 +34,7 @@ Respond in this exact JSON format only, no other text:
   "stylistNote": "one sentence overall style advice"
 }`
 
+  async function callGemini() {
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${process.env.GOOGLE_GEMINI_APIKEY}`,
       {
@@ -53,15 +53,29 @@ Respond in this exact JSON format only, no other text:
         })
       }
     )
+    return response.json()
+  }
 
-    const data = await response.json()
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
+  try {
+    let data = await callGemini()
+    let attempts = 1
+
+    // Retry up to 3 times if Gemini is temporarily overloaded (503)
+    while (data?.error?.code === 503 && attempts < 4) {
+      await sleep(1500)
+      data = await callGemini()
+      attempts++
+    }
 
     if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
       return res.status(500).json({ error: 'No response from AI', details: data.error })
     }
 
     const rawText = data.candidates[0].content.parts[0].text
-
     const cleanText = rawText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim()
 
     return res.status(200).json({
