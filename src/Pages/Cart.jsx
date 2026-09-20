@@ -55,6 +55,20 @@ function Cart({ cart, removeFromCart }) {
   return (
     <div style={{ padding: '80px 40px' }}>
 
+      <style>{`
+        @media (max-width: 768px) {
+          .cart-grid {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+        }
+        @media (max-width: 500px) {
+          .cart-page-padding {
+            padding: 40px 20px !important;
+          }
+        }
+      `}</style>
+
       <h1 style={{ fontFamily: 'Rye, serif', color: '#161412', marginBottom: '40px' }}>
         Your Cart
       </h1>
@@ -64,7 +78,7 @@ function Cart({ cart, removeFromCart }) {
           Your cart is empty. Go add some fits!
         </p>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px' }}>
+        <div className="cart-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px' }}>
 
           {/* Left — Cart Items */}
           <div>

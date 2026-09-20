@@ -92,6 +92,7 @@
 @media (max-width: 768px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .product-section {
@@ -103,9 +104,31 @@
   }
 }
 
-/* Mobile — 1 column */
+/* Mobile — 3 columns, smaller cards */
 @media (max-width: 480px) {
   .product-grid {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .product-info {
+    padding: 8px;
+  }
+
+  .product-name {
+    font-size: 12px;
+  }
+
+  .product-price {
+    font-size: 12px;
+  }
+
+  .product-category {
+    font-size: 9px;
+  }
+
+  .product-btn {
+    padding: 6px;
+    font-size: 10px;
   }
 }

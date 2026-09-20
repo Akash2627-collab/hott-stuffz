@@ -9,14 +9,15 @@ function AdminLogin() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  async function handleLogin() {
-    try {
-      await signInWithEmailAndPassword(auth, email, password)
-      navigate('/admin')
-    } catch (err) {
-      setError('Wrong email or password. Try again.')
-    }
+async function handleLogin() {
+  try {
+    await signInWithEmailAndPassword(auth, email, password)
+    navigate('/admin')
+  } catch (err) {
+    console.error('Firebase error:', err.code, err.message)
+    setError('Wrong email or password. Try again.')
   }
+}
 
   return (
     <div style={{

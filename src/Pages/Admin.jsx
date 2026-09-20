@@ -17,6 +17,8 @@ function Admin() {
   const [occasion, setOccasion] = useState('')
   const [description, setDescription] = useState('')
   const [imageUrl, setImageUrl] = useState('')
+  const [sourceShop, setSourceShop] = useState('')
+  const [dateAdded, setDateAdded] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -79,7 +81,9 @@ function Admin() {
       return
     }
     await addDoc(collection(db, 'products'), {
-      name, price, category, occasion, description, imageUrl
+      name, price, category, occasion, description, imageUrl,
+      sourceShop,
+      dateAdded: dateAdded || new Date().toLocaleDateString()
     })
     alert('Product added!')
     setName('')
@@ -88,6 +92,8 @@ function Admin() {
     setOccasion('')
     setDescription('')
     setImageUrl('')
+    setSourceShop('')
+    setDateAdded('')
     fetchProducts()
   }
 
@@ -166,6 +172,22 @@ function Admin() {
           onChange={(e) => setImageUrl(e.target.value)}
           style={{ width: '100%', padding: '12px', border: '1px solid #4A4540', fontFamily: 'Work Sans, sans-serif', marginTop: '16px', boxSizing: 'border-box' }}
         />
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '16px' }}>
+          <input
+            placeholder="Source Shop (internal only, not shown to customers)"
+            value={sourceShop}
+            onChange={(e) => setSourceShop(e.target.value)}
+            style={{ padding: '12px', border: '1px solid #4A4540', fontFamily: 'Work Sans, sans-serif' }}
+          />
+          <input
+            type="date"
+            value={dateAdded}
+            onChange={(e) => setDateAdded(e.target.value)}
+            style={{ padding: '12px', border: '1px solid #4A4540', fontFamily: 'Work Sans, sans-serif' }}
+          />
+        </div>
+
         {imageUrl && (
           <img src={imageUrl} alt="Preview"
             style={{ width: '120px', height: '150px', objectFit: 'cover', marginTop: '12px', border: '1px solid #4A4540' }} />
@@ -189,6 +211,11 @@ function Admin() {
               <div>
                 <h3 style={{ color: '#161412', marginBottom: '4px' }}>{product.name}</h3>
                 <p style={{ color: '#4A4540', fontSize: '13px' }}>{product.category} — {product.occasion} — {product.price}</p>
+                {product.sourceShop && (
+                  <p style={{ color: '#A31621', fontSize: '12px', marginTop: '2px' }}>
+                    🏪 {product.sourceShop} {product.dateAdded && `— Added: ${product.dateAdded}`}
+                  </p>
+                )}
               </div>
             </div>
             <button onClick={() => handleDelete(product.id)}
